@@ -38,8 +38,31 @@ var Deck = function(){
 	shuffle(this.deck)
 }
 
-var Game = function(){}
-Game.prototype.deal = function(num){}
-Game.prototype.hold = function(){}
-Game.prototype.gameOver = function(){}
-Game.prototype.getValue = function(num){}
+
+//Creates a new Blackjack game. It deals the first hand
+var Game = function(deck){
+	this.deck = deck
+	this.playersHand = []
+	this.houseHand = []
+	
+	this.playersHand.push(this.deck.deck.shift())
+	this.playersHand.push(this.deck.deck.shift())
+	this.houseHand.push(this.deck.deck.shift())
+	this.houseHand.push(this.deck.deck.shift())
+}
+
+
+Game.prototype.deal = function(num){
+	if(num == 0 ){
+		this.playersHand.push(this.deck.deck.shift())
+	}else if(num == 1){
+		this.houseHand.push(this.deck.deck.shift())
+	}
+}
+
+
+
+// Game.prototype.hold = function(){}
+// Game.prototype.gameOver = function(){}
+// Game.prototype.getValue = function(num){}
+
