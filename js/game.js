@@ -37,3 +37,9 @@ var Deck = function(){
 	}
 	shuffle(this.deck)
 }
+
+var Game = function(){}
+Game.prototype.deal = function(num){}
+Game.prototype.hold = function(){}
+Game.prototype.gameOver = function(){}
+Game.prototype.getValue = function(num){}
