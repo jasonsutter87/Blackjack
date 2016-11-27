@@ -38,12 +38,13 @@ var Deck = function(){
 	shuffle(this.deck)
 }
 
-
 //Creates a new Blackjack game. It deals the first hand
 var Game = function(deck){
 	this.deck = deck
 	this.playersHand = []
 	this.houseHand = []
+	this.playerHold = false
+	this.houseHold = false
 	
 	this.playersHand.push(this.deck.deck.shift())
 	this.playersHand.push(this.deck.deck.shift())
@@ -51,18 +52,66 @@ var Game = function(deck){
 	this.houseHand.push(this.deck.deck.shift())
 }
 
-
 Game.prototype.deal = function(num){
 	if(num == 0 ){
 		this.playersHand.push(this.deck.deck.shift())
-	}else if(num == 1){
+	}else{
 		this.houseHand.push(this.deck.deck.shift())
 	}
 }
 
+Game.prototype.hold = function(num){
+	if(num == 0 ){
+		this.playerHold = true
+	}else{
+		this.houseHold = true
+	}
+}
 
+Game.prototype.whoWon = function(){
+	if(game.getValue(game.playersHand) == game.getValue(game.houseHand)){
+		console.log("******  Final Score  ******")
+		console.log("Tie goes to the House: ", game.getValue(game.houseHand))
+		console.log("players Final hand: ",game.playersHand)
+		console.log("house Final hand: ",game.houseHand)
+	}else if(game.getValue(game.playersHand) <= 21 && (game.getValue(game.playersHand) > game.getValue(game.houseHand))){
+		console.log("******  Final Score  ******")
+		console.log("Player wins with a final total of: ", game.getValue(game.playersHand))
+		console.log("house Final total: ", game.getValue(game.houseHand))
+		console.log("players Final hand: ",game.playersHand)
+		console.log("house Final hand: ",game.houseHand)
+	}else if(game.getValue(game.houseHand) <= 21 && (game.getValue(game.houseHand) > game.getValue(game.playersHand))){
+		console.log("******  Final Score  ******")
+		console.log("House wins with a final total of: ", game.getValue(game.houseHand))
+		console.log("players Final total: ", game.getValue(game.playersHand))
+		console.log("players Final hand: ",game.playersHand)
+		console.log("house Final hand: ",game.houseHand)
+	}else if(game.getValue(game.playersHand) > 21 ){
+			console.log("******  Final Score  ******")
+			console.log("House wins with a final total of: ", game.getValue(game.houseHand))
+			console.log("players Final total: ", game.getValue(game.playersHand))
+			console.log("players Final hand: ",game.playersHand)
+			console.log("house Final hand: ",game.houseHand)
+		
+	}else{
+		console.log("******  Final Score  ******")
+		console.log("Player wins with a final total of: ", game.getValue(game.playersHand))
+		console.log("house Final total: ", game.getValue(game.houseHand))
+		console.log("players Final hand: ",game.playersHand)
+		console.log("house Final hand: ",game.houseHand)
+	}
+}
 
-// Game.prototype.hold = function(){}
-// Game.prototype.gameOver = function(){}
-// Game.prototype.getValue = function(num){}
-
+Game.prototype.getValue = function(hands){
+ 	total = 0
+ 	for(var i = 0; i < hands.length; i++){
+ 		if(hands[i].slice(1) == 11 || hands[i].slice(1) == 12 || hands[i].slice(1) == 13){
+ 			total = total + parseInt("10")
+ 		}else if(hands[i].slice(1) == 1 && ( hands.length <= 3 || total <= 16)){
+ 			total = total + 11
+ 		}else{
+ 			total = total + parseInt(hands[i].slice(1))
+ 		}
+ 	}
+ 	return total
+}
