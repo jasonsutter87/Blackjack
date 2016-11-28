@@ -14,6 +14,7 @@
   <title>Blackjack!</title>
 </head>
 <body>
+  <center>
   <div class="title center">
     <h2>Welcome to Blackjack!</h2>
     <a href="index.html" id="ResetGame" type="button" class="btn btn-primary btn-lg">New Game</a>
@@ -22,6 +23,21 @@
   <button id="hit" class="btn btn-success">Hit</button>
   <button id="hold" class="btn btn-warning">Hold</button>
   </div>
+
+   <div class="house">
+      <div><h3>House Hand</h3></div>
+      <div id="houseCard1"class="spot mark size"></div>
+      <div id="houseCard2"class="spot mark size"></div>
+    </div>
+     <div class="player">
+      <div><h3>Player Hand</h3></div>
+      <div id="playerCard1"class="spot mark size"></div>
+      <div id="playerCard2"class="spot mark size"></div>
+    </div>
+
+    <div id='final'>
+    </div>
+</center>
 </body>
   <script src="../js/game.js"></script>
   <script src="../js/application.js"></script>

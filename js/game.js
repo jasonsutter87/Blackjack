@@ -70,35 +70,15 @@ Game.prototype.hold = function(num){
 
 Game.prototype.whoWon = function(){
 	if(game.getValue(game.playersHand) == game.getValue(game.houseHand)){
-		console.log("******  Final Score  ******")
-		console.log("Tie goes to the House: ", game.getValue(game.houseHand))
-		console.log("players Final hand: ",game.playersHand)
-		console.log("house Final hand: ",game.houseHand)
+		return 1
 	}else if(game.getValue(game.playersHand) <= 21 && (game.getValue(game.playersHand) > game.getValue(game.houseHand))){
-		console.log("******  Final Score  ******")
-		console.log("Player wins with a final total of: ", game.getValue(game.playersHand))
-		console.log("house Final total: ", game.getValue(game.houseHand))
-		console.log("players Final hand: ",game.playersHand)
-		console.log("house Final hand: ",game.houseHand)
+		return 2
 	}else if(game.getValue(game.houseHand) <= 21 && (game.getValue(game.houseHand) > game.getValue(game.playersHand))){
-		console.log("******  Final Score  ******")
-		console.log("House wins with a final total of: ", game.getValue(game.houseHand))
-		console.log("players Final total: ", game.getValue(game.playersHand))
-		console.log("players Final hand: ",game.playersHand)
-		console.log("house Final hand: ",game.houseHand)
+		return 3
 	}else if(game.getValue(game.playersHand) > 21 ){
-			console.log("******  Final Score  ******")
-			console.log("House wins with a final total of: ", game.getValue(game.houseHand))
-			console.log("players Final total: ", game.getValue(game.playersHand))
-			console.log("players Final hand: ",game.playersHand)
-			console.log("house Final hand: ",game.houseHand)
-		
+			return 3
 	}else{
-		console.log("******  Final Score  ******")
-		console.log("Player wins with a final total of: ", game.getValue(game.playersHand))
-		console.log("house Final total: ", game.getValue(game.houseHand))
-		console.log("players Final hand: ",game.playersHand)
-		console.log("house Final hand: ",game.houseHand)
+		return 2
 	}
 }
 
