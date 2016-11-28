@@ -23,6 +23,8 @@ $( '#hit' ).click(function( event ) {
 			 	$('#final').append('<strong><h3>Tie goes to the House: '+ game.getValue(game.houseHand) +'</h3></strong>')
 			 }else if(game.whoWon() == 2){
 			 	$('#final').append('<strong><h3>Player wins with a final total of: '+ game.getValue(game.playersHand) +'</h3></strong>')
+			 }else if(game.whoWon() == 3){
+			 	$('#final').append('<strong><h3>Player Bust with a final total of: '+ game.getValue(game.playersHand) +'</h3></strong>')
 			 }else{
 			 	$('#final').append('<strong><h3>House wins with a final total of: '+ game.getValue(game.houseHand) +'</h3></strong>')
 			 }

@@ -76,7 +76,7 @@ Game.prototype.whoWon = function(){
 	}else if(game.getValue(game.houseHand) <= 21 && (game.getValue(game.houseHand) > game.getValue(game.playersHand))){
 		return 3
 	}else if(game.getValue(game.playersHand) > 21 ){
-			return 3
+			return 4
 	}else{
 		return 2
 	}
