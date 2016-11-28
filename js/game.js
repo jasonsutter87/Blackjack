@@ -71,12 +71,12 @@ Game.prototype.hold = function(num){
 Game.prototype.whoWon = function(){
 	if(game.getValue(game.playersHand) == game.getValue(game.houseHand)){
 		return 1
+	}else if(game.getValue(game.playersHand) > 21 ){
+			return 4
 	}else if(game.getValue(game.playersHand) <= 21 && (game.getValue(game.playersHand) > game.getValue(game.houseHand))){
 		return 2
 	}else if(game.getValue(game.houseHand) <= 21 && (game.getValue(game.houseHand) > game.getValue(game.playersHand))){
 		return 3
-	}else if(game.getValue(game.playersHand) > 21 ){
-			return 4
 	}else{
 		return 2
 	}
