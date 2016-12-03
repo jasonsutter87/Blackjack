@@ -10,11 +10,8 @@ $( '#playerCard2' ).addClass('backCard')
 
 
 
-// $( '#houseCard1' ).addClass('backCard')
-// $( '#houseCard2' ).addClass(game.houseHand[1])
-	
-// $( '#playerCard1' ).addClass( game.playersHand[0])
-// $( '#playerCard2' ).addClass( game.playersHand[1])
+
+
 
 $( '#hit' ).click(function( event ) {
 	event.preventDefault();
@@ -85,3 +82,24 @@ $( '#hold' ).click(function( event ) {
  $( '#houseCard1' ).removeClass('backCard')
  $( '#houseCard1' ).addClass(game.houseHand[0])
 });	
+
+$('#dealFirstHand').click(function(event){
+	event.preventDefault()
+	game.intialDeal()
+
+	$( '#houseCard1' ).addClass('backCard')
+	$( '#houseCard2' ).addClass(game.houseHand[1])
+		
+	$( '#playerCard1' ).addClass( game.playersHand[0])
+	$( '#playerCard2' ).addClass( game.playersHand[1])
+	$('#dealFirstHand').addClass('hidden')
+	$('#dealHand').removeClass('hidden')
+	$('#hit').removeClass('hidden')
+	$('#hold').removeClass('hidden')
+})
+
+$('#dealHand').click(function(event){
+	event.preventDefault()
+})
+
+
