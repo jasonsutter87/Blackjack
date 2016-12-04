@@ -6,24 +6,10 @@ body {
   text-align: center;
 }
 
-#stats{
-  position: fixed;
-  top:  10%;
-  left: 65%;
-}
-
 .backCard{
   background-image: url('../images/cardBack.png');
   background-position: center; 
   background-size: cover;
-}
-
-.mark {
-  width: 100px;
-  height: 150px;
-  display: inline-block;
-  background-size: cover;
-  background-position: center; 
 }
 
 .H1{
@@ -233,3 +219,49 @@ body {
 .S13{
   background-image: url('../images/S13.png');
 }
+
+#stats{
+  position: fixed;
+  top:  10%;
+  left: 65%;
+}
+
+
+
+.mark {
+  width: 100px;
+  height: 150px;
+  display: inline-block;
+  background-size: cover;
+  background-position: center; 
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        background-color: lightblue;
+    }
+
+    #stats{
+      position: fixed;
+      top:  80%;
+      left: 65%;
+    }
+
+    .statsFont{
+      font-size: 1.15em;
+
+    }
+
+
+    .mark {
+      width: 100px;
+      height: 145px;
+      display: inline-block;
+      background-size: cover;
+      background-position: center; 
+    }
+
+}
+
+
+
