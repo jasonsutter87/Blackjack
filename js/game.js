@@ -43,6 +43,7 @@ var Game = function(deck){
 	this.deck = deck
 	this.playersHand = []
 	this.houseHand = []
+	this.pastCards = []
 	this.playerHold = false
 	this.houseHold = false	
 }
