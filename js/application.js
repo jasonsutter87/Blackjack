@@ -1,6 +1,16 @@
 deck = new Deck()
 game = new Game(deck)
 
+if(localStorage.getItem('win') == null && localStorage.getItem('lost') == null){
+	localStorage.setItem("win", 0)
+	localStorage.setItem("lost", 0)
+	$('#gameWon').html('0')
+	$('#gameLost').html('0')
+}else{	
+	$('#gameWon').html(localStorage.getItem("win"))
+	$('#gameLost').html(localStorage.getItem("lost"))
+}
+
 $( '#houseCard1' ).addClass('backCard')
 $( '#houseCard2' ).addClass('backCard')
 $( '#playerCard1' ).addClass('backCard')
@@ -21,16 +31,21 @@ $( '#hit' ).click(function( event ) {
 	
 			if(game.whoWon() == 1){
 			 	$('#final').append('<strong><h3>Tie goes to the House: '+ game.getValue(game.houseHand) +'</h3></strong>')
-			 	var count = parseInt($('#gameLost').html())
-			 	$('#gameLost').html(count + 1)
+			 	var count = parseInt(localStorage.getItem("lost"))
+			 	localStorage.setItem('lost', count + 1)
+			 	$('#gameLost').html(localStorage.getItem("lost"))
 			 }else if(game.whoWon() == 2){
 			 	$('#final').append('<strong><h3>Player wins with a final total of: '+ game.getValue(game.playersHand) +'</h3></strong>')
-			 	var count = parseInt($('#gameWon').html())
-			 	$('#gameWon').html(count + 1)
+			 	
+			 	var count = parseInt(localStorage.getItem("win"))
+			 	localStorage.setItem('win', count + 1)
+			 	$('#gameWon').html(localStorage.getItem("win"))
+
 			 }else{
 			 	$('#final').append('<strong><h3>House wins with a final total of: '+ game.getValue(game.houseHand) +'</h3></strong>')
-			 	var count = parseInt($('#gameLost').html())
-			 	$('#gameLost').html(count + 1)
+			 	var count = parseInt(localStorage.getItem("lost"))
+			 	localStorage.setItem('lost', count + 1)
+			 	$('#gameLost').html(localStorage.getItem("lost"))
 			 }
 
 			$( '#hit' ).hide()
@@ -69,19 +84,29 @@ $( '#hold' ).click(function( event ) {
 	  }
   	}
   }
- if(game.whoWon() == 1){
- 	$('#final').append('<strong><h3>Tie goes to the House: '+ game.getValue(game.houseHand) +'</h3></strong>')
- 	var count = parseInt($('#gameLost').html())
- 	$('#gameLost').html(count + 1)
- }else if(game.whoWon() == 2){
- 	$('#final').append('<strong><h3>Player wins with a final total of: '+ game.getValue(game.playersHand) +'</h3></strong>')
- 	var count = parseInt($('#gameWon').html())
- 	$('#gameWon').html(count + 1)
- }else{
- 	$('#final').append('<strong><h3>House wins with a final total of: '+ game.getValue(game.houseHand) +'</h3></strong>')
- 	var count = parseInt($('#gameLost').html())
- 	$('#gameLost').html(count + 1)
- }
+	 if(game.whoWon() == 1){
+	 	$('#final').append('<strong><h3>Tie goes to the House: '+ game.getValue(game.houseHand) +'</h3></strong>')
+	 	
+	 	var count = parseInt(localStorage.getItem("lost"))
+	 	localStorage.setItem('lost', count + 1)
+	 	$('#gameLost').html(localStorage.getItem("lost"))
+	 
+	 }else if(game.whoWon() == 2){
+	 	$('#final').append('<strong><h3>Player wins with a final total of: '+ game.getValue(game.playersHand) +'</h3></strong>')
+	 	console.log("winnnnnning")
+	 	console.log("winnnnnning")
+	 	var count = parseInt(localStorage.getItem("win"))
+	 	localStorage.setItem('win', count + 1)
+	 	$('#gameWon').text(localStorage.getItem("win"))
+	 
+	 }else{
+	 	$('#final').append('<strong><h3>House wins with a final total of: '+ game.getValue(game.houseHand) +'</h3></strong>')
+	 	
+	 	var count = parseInt(localStorage.getItem("lost"))
+	 	localStorage.setItem('lost', count + 1)
+ 		$('#gameLost').html(localStorage.getItem("lost"))
+	
+	}
  $( '#hit' ).hide()
  $( '#hold' ).hide()
 
@@ -110,11 +135,12 @@ $('#dealFirstHand').click(function(event){
 $('#dealHand').click(function(event){
 	event.preventDefault()
 	if($('#houseCard1' ).hasClass('backCard') == true){
-		var count = parseInt($('#gameLost').html())
-	 	$('#gameLost').html(count + 1)
+		var count = parseInt(localStorage.getItem("lost"))
+	 	localStorage.setItem('lost', count + 1)
+ 		$('#gameLost').html(localStorage.getItem("lost"))
 	}
 
-	if(game.deck.deck.length > 4 ){
+	if(game.deck.deck.length > 6 ){
 
 		if($('#hit').hasClass('disabled') == true){
 			$('#hit').removeClass('disabled')
