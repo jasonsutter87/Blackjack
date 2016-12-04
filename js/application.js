@@ -6,15 +6,9 @@ $( '#houseCard2' ).addClass('backCard')
 $( '#playerCard1' ).addClass('backCard')
 $( '#playerCard2' ).addClass('backCard')
 
-
-
-
-
-
-
-
 $( '#hit' ).click(function( event ) {
 	event.preventDefault();
+
 	if(game.getValue(game.playersHand) < 21){
 	  if(game.playerHold == false){
 	  	game.deal(0)
@@ -100,6 +94,56 @@ $('#dealFirstHand').click(function(event){
 
 $('#dealHand').click(function(event){
 	event.preventDefault()
+	if(game.deck.deck.length > 4 ){
+
+		if($('#hit').hasClass('disabled') == true){
+			$('#hit').removeClass('disabled')
+		}
+
+		$('#hit').show()
+		$('#hold').show()
+		$('#final').children().remove()
+
+		$.each(game.playersHand, function(index, element){
+		game.pastCards.push(element)
+		})
+
+		$.each(game.houseHand, function(index, element){
+			game.pastCards.push(element)
+		})
+		
+		$.each(game.playersHand, function(index, element){
+			$('#playerCard' + (index + 1)).remove()
+		})
+
+		$.each(game.houseHand, function(index, element){
+			$('#houseCard' + (index + 1)).remove()
+		})
+
+		game.playersHand = []
+		game.houseHand = []
+
+		game.intialDeal()
+
+		$('.player').append('<div id="playerCard1" class="spot mark size"></div>')
+		$('.player').append('<div id="playerCard2" class="spot mark size"></div>')
+		$('.house').append('<div id="houseCard1" class="spot mark size"></div>')
+		$('.house').append('<div id="houseCard2" class="spot mark size"></div>')
+
+
+		$.each(game.playersHand, function(index, element){
+			$( '#playerCard'+ (index + 1)).addClass( element )
+		})
+		
+		$( '#houseCard1' ).addClass('backCard')
+		$( '#houseCard2' ).addClass(game.houseHand[1])
+	}else{
+		$('#dealHand').addClass('hidden')
+		$('#resetGame').removeClass('hidden')
+	}
+
+	game.playerHold = false
+	game.hosueHold = false
 })
 
 
