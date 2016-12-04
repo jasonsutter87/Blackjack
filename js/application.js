@@ -21,10 +21,16 @@ $( '#hit' ).click(function( event ) {
 	
 			if(game.whoWon() == 1){
 			 	$('#final').append('<strong><h3>Tie goes to the House: '+ game.getValue(game.houseHand) +'</h3></strong>')
+			 	var count = parseInt($('#gameLost').html())
+			 	$('#gameLost').html(count + 1)
 			 }else if(game.whoWon() == 2){
 			 	$('#final').append('<strong><h3>Player wins with a final total of: '+ game.getValue(game.playersHand) +'</h3></strong>')
+			 	var count = parseInt($('#gameWon').html())
+			 	$('#gameWon').html(count + 1)
 			 }else{
 			 	$('#final').append('<strong><h3>House wins with a final total of: '+ game.getValue(game.houseHand) +'</h3></strong>')
+			 	var count = parseInt($('#gameLost').html())
+			 	$('#gameLost').html(count + 1)
 			 }
 
 			$( '#hit' ).hide()
@@ -65,10 +71,16 @@ $( '#hold' ).click(function( event ) {
   }
  if(game.whoWon() == 1){
  	$('#final').append('<strong><h3>Tie goes to the House: '+ game.getValue(game.houseHand) +'</h3></strong>')
+ 	var count = parseInt($('#gameLost').html())
+ 	$('#gameLost').html(count + 1)
  }else if(game.whoWon() == 2){
  	$('#final').append('<strong><h3>Player wins with a final total of: '+ game.getValue(game.playersHand) +'</h3></strong>')
+ 	var count = parseInt($('#gameWon').html())
+ 	$('#gameWon').html(count + 1)
  }else{
  	$('#final').append('<strong><h3>House wins with a final total of: '+ game.getValue(game.houseHand) +'</h3></strong>')
+ 	var count = parseInt($('#gameLost').html())
+ 	$('#gameLost').html(count + 1)
  }
  $( '#hit' ).hide()
  $( '#hold' ).hide()
