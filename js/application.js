@@ -102,10 +102,18 @@ $('#dealFirstHand').click(function(event){
 	$('#dealHand').removeClass('hidden')
 	$('#hit').removeClass('hidden')
 	$('#hold').removeClass('hidden')
+	$( '#playerCard1' ).removeClass('backCard')
+	$( '#playerCard2' ).removeClass('backCard')
+	$( '#houseCard2' ).removeClass('backCard')
 })
 
 $('#dealHand').click(function(event){
 	event.preventDefault()
+	if($('#houseCard1' ).hasClass('backCard') == true){
+		var count = parseInt($('#gameLost').html())
+	 	$('#gameLost').html(count + 1)
+	}
+
 	if(game.deck.deck.length > 4 ){
 
 		if($('#hit').hasClass('disabled') == true){
