@@ -43,9 +43,12 @@ var Game = function(deck){
 	this.deck = deck
 	this.playersHand = []
 	this.houseHand = []
+	this.pastCards = []
 	this.playerHold = false
-	this.houseHold = false
-	
+	this.houseHold = false	
+}
+
+Game.prototype.intialDeal = function(){
 	this.playersHand.push(this.deck.deck.shift())
 	this.playersHand.push(this.deck.deck.shift())
 	this.houseHand.push(this.deck.deck.shift())

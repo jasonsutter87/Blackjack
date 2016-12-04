@@ -2,6 +2,16 @@ body {
   background-color: #056c70;
 }
 
+.center {
+  text-align: center;
+}
+
+#stats{
+  position: fixed;
+  top:  10%;
+  left: 65%;
+}
+
 .backCard{
   background-image: url('../images/cardBack.png');
   background-position: center; 

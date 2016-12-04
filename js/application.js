@@ -2,13 +2,13 @@ deck = new Deck()
 game = new Game(deck)
 
 $( '#houseCard1' ).addClass('backCard')
-$( '#houseCard2' ).addClass(game.houseHand[1])
-	
-$( '#playerCard1' ).addClass( game.playersHand[0])
-$( '#playerCard2' ).addClass( game.playersHand[1])
+$( '#houseCard2' ).addClass('backCard')
+$( '#playerCard1' ).addClass('backCard')
+$( '#playerCard2' ).addClass('backCard')
 
 $( '#hit' ).click(function( event ) {
 	event.preventDefault();
+
 	if(game.getValue(game.playersHand) < 21){
 	  if(game.playerHold == false){
 	  	game.deal(0)
@@ -21,10 +21,16 @@ $( '#hit' ).click(function( event ) {
 	
 			if(game.whoWon() == 1){
 			 	$('#final').append('<strong><h3>Tie goes to the House: '+ game.getValue(game.houseHand) +'</h3></strong>')
+			 	var count = parseInt($('#gameLost').html())
+			 	$('#gameLost').html(count + 1)
 			 }else if(game.whoWon() == 2){
 			 	$('#final').append('<strong><h3>Player wins with a final total of: '+ game.getValue(game.playersHand) +'</h3></strong>')
+			 	var count = parseInt($('#gameWon').html())
+			 	$('#gameWon').html(count + 1)
 			 }else{
 			 	$('#final').append('<strong><h3>House wins with a final total of: '+ game.getValue(game.houseHand) +'</h3></strong>')
+			 	var count = parseInt($('#gameLost').html())
+			 	$('#gameLost').html(count + 1)
 			 }
 
 			$( '#hit' ).hide()
@@ -65,10 +71,16 @@ $( '#hold' ).click(function( event ) {
   }
  if(game.whoWon() == 1){
  	$('#final').append('<strong><h3>Tie goes to the House: '+ game.getValue(game.houseHand) +'</h3></strong>')
+ 	var count = parseInt($('#gameLost').html())
+ 	$('#gameLost').html(count + 1)
  }else if(game.whoWon() == 2){
  	$('#final').append('<strong><h3>Player wins with a final total of: '+ game.getValue(game.playersHand) +'</h3></strong>')
+ 	var count = parseInt($('#gameWon').html())
+ 	$('#gameWon').html(count + 1)
  }else{
  	$('#final').append('<strong><h3>House wins with a final total of: '+ game.getValue(game.houseHand) +'</h3></strong>')
+ 	var count = parseInt($('#gameLost').html())
+ 	$('#gameLost').html(count + 1)
  }
  $( '#hit' ).hide()
  $( '#hold' ).hide()
@@ -76,3 +88,74 @@ $( '#hold' ).click(function( event ) {
  $( '#houseCard1' ).removeClass('backCard')
  $( '#houseCard1' ).addClass(game.houseHand[0])
 });	
+
+$('#dealFirstHand').click(function(event){
+	event.preventDefault()
+	game.intialDeal()
+
+	$( '#houseCard1' ).addClass('backCard')
+	$( '#houseCard2' ).addClass(game.houseHand[1])
+		
+	$( '#playerCard1' ).addClass( game.playersHand[0])
+	$( '#playerCard2' ).addClass( game.playersHand[1])
+	$('#dealFirstHand').addClass('hidden')
+	$('#dealHand').removeClass('hidden')
+	$('#hit').removeClass('hidden')
+	$('#hold').removeClass('hidden')
+})
+
+$('#dealHand').click(function(event){
+	event.preventDefault()
+	if(game.deck.deck.length > 4 ){
+
+		if($('#hit').hasClass('disabled') == true){
+			$('#hit').removeClass('disabled')
+		}
+
+		$('#hit').show()
+		$('#hold').show()
+		$('#final').children().remove()
+
+		$.each(game.playersHand, function(index, element){
+		game.pastCards.push(element)
+		})
+
+		$.each(game.houseHand, function(index, element){
+			game.pastCards.push(element)
+		})
+		
+		$.each(game.playersHand, function(index, element){
+			$('#playerCard' + (index + 1)).remove()
+		})
+
+		$.each(game.houseHand, function(index, element){
+			$('#houseCard' + (index + 1)).remove()
+		})
+
+		game.playersHand = []
+		game.houseHand = []
+
+		game.intialDeal()
+
+		$('.player').append('<div id="playerCard1" class="spot mark size"></div>')
+		$('.player').append('<div id="playerCard2" class="spot mark size"></div>')
+		$('.house').append('<div id="houseCard1" class="spot mark size"></div>')
+		$('.house').append('<div id="houseCard2" class="spot mark size"></div>')
+
+
+		$.each(game.playersHand, function(index, element){
+			$( '#playerCard'+ (index + 1)).addClass( element )
+		})
+		
+		$( '#houseCard1' ).addClass('backCard')
+		$( '#houseCard2' ).addClass(game.houseHand[1])
+	}else{
+		$('#dealHand').addClass('hidden')
+		$('#resetGame').removeClass('hidden')
+	}
+
+	game.playerHold = false
+	game.hosueHold = false
+})
+
+
